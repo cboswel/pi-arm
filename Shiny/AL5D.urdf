@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<robot name="al5d_arm">
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<cylinder length="0.056" radius="0.0475"/>
+			</geometry>
+			<material name="black">
+				<color rgba="0 0 0 1"/>
+			</material>
+		</visual>
+	<collision>
+		<geometry>
+			<cylinder length="0.056" radius="0.0475"/>
+		</geometry>
+		<material name="green">
+			<color rgba="0 1 0 1"/>
+		</material>
+	</collision>
+	</link>
+
+	<joint name="base_joint" type="revolute">
+		<parent link="base_link" />
+		<child link="shoulder_servo_link" />
+		<origin xyz="0 0 0.0465" rpy="0 0 0" /> 
+		<axis xyz="0 0 1" />
+		<limit lower="-1.57" upper="1.57" effort="10" velocity="3" />	
+	</joint>
+
+	<link name="shoulder_servo_link">
+		<visual>
+			<geometry>
+				<box size="0.061 0.082 0.037" />
+			</geometry>
+			<material name="gray">
+				<color rgba="0.5 0.5 0.5 1"/>
+			</material>
+			<origin xyz="0 0 0"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.061 0.082 0.037" />
+			</geometry>
+			<material name="blue">
+				<color rgba="0 0 1 1"/>
+			</material>
+			<origin xyz="0 0 0"/>
+		</collision>
+	</link>
+
+	<joint name="shoulder_joint" type="revolute">
+		<parent link="shoulder_servo_link" />
+		<child link="upper_arm" />
+		<axis xyz="0 1 0" rpy="0 0 0"/>
+		<limit lower="-1" upper="1" effort="0" velocity="3" />
+	</joint>
+
+	<link name="upper_arm">
+		<visual>
+			<geometry>
+				<box size="0.024 0.078 0.18" />
+			</geometry>
+			<material name="gray"/>
+			<origin xyz="0 0 0.086"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.024 0.078 0.18" />
+			</geometry>
+			<material name="blue"/>
+			<origin xyz="0 0 0.086"/>
+		</collision>
+	</link>
+
+	<joint name="elbow" type="revolute">
+		<parent link="upper_arm" />
+		<child link="forearm" />
+		<origin xyz="0 0 0.167" rpy="0 0 0" />
+		<axis xyz="0 1 0" rpy="0 0 0"/>
+		<limit lower="-1" upper="1" effort="10" velocity="3" />
+	</joint>
+
+	<link name="forearm">
+		<visual>
+			<geometry>
+				<box size="0.078 0.070 0.034 " />
+			</geometry>
+			<material name="gray"/>
+			<origin xyz="-0.0145 0 0"/>
+		</visual>	
+		<collision>
+		<geometry>
+				<box size="0.078 0.070 0.034 " />
+			</geometry>
+			<material name="gray"/>
+			<origin xyz="-0.0145 0 0"/>	
+		</collision>
+
+		<visual>
+			<geometry>
+				<box size="0.181 0.054 0.026" />
+			</geometry>
+			<material name="gray" />
+			<!-- half of own length + half of other box length - origin of other box -->
+			<origin xyz="0.115 0 0"/>			
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.181 0.054 0.026" />
+			</geometry>
+			<material name="gray" />
+			<!-- half of own length + half of other box length - origin of other box -->
+			<origin xyz="0.115 0 0"/>		
+		</collision>
+	</link>
+</robot>

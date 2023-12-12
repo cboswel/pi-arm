@@ -1,0 +1,31 @@
+<robot name="AL5D_arm">
+	<link name="base_link">
+	</link>
+	<link name="link1">
+	</link>
+	<link name="link2">
+	</link>
+	<link name="link3">
+	</link>
+	<joint name="joint0" type="revolute">
+		<parent link="base_link"/>
+		<child link="link1"/>
+		<origin rpy="0 0 0" xyz="0 0 0.001"/>
+		<axis xyz="0 0 1" />
+		<limit lower="-1.3962634016" upper="1.3962634016" effort="3.1" velocity="7.0"></limit>	
+	</joint>
+	<joint name="joint1" type="revolute">
+		<parent link="link1"/>
+		<child link="link2"/>
+		<origin rpy="0 0 0" xyz="0 0 .56"/>
+		<axis xyz="1 0 0" />
+		<limit lower="-1.3962634016" upper="1.3962634016" effort="3.1" velocity="7.0"></limit>	
+	</joint>	
+	<joint name="joint2" type="revolute">
+		<parent link="link2"/>
+		<child link="link3"/>
+		<origin rpy="0 0 0" xyz="0 0 0.146"/>
+		<axis xyz="1 0 0" />
+		<limit lower="-1.3962634016" upper="1.3962634016" effort="3.1" velocity="7.0"></limit>	
+	</joint>
+</robot>
